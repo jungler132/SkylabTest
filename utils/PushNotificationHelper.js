@@ -15,12 +15,10 @@ export async function requestUserPermission() {
 
 async function GetFCMToken() {
   let fcmtoken = await AsyncStorage.getItem('fcmtoken');
-  console.log('old token -->', fcmtoken);
   if (!fcmtoken) {
     try {
       const fcmtoken = await messaging().getToken();
       if (fcmtoken) {
-        console.log('new token ---->', fcmtoken);
         await AsyncStorage.setItem('fcmtoken', fcmtoken);
       }
     } catch (error) {
@@ -37,7 +35,6 @@ export const NotificationListener = () => {
     );
   });
 
-  // Check whether an initial notification is available
   messaging()
     .getInitialNotification()
     .then(remoteMessage => {
