@@ -1,13 +1,17 @@
 import React, {useEffect} from 'react';
 
 import {Text, View} from 'react-native';
-import {requestUserPermission} from '../../utils/PushNotificationHelper';
+import {
+  NotificationListener,
+  requestUserPermission,
+} from '../../utils/PushNotificationHelper';
 
 import {styles} from './style';
 
 const StartScreen = () => {
   useEffect(() => {
     requestUserPermission();
+    NotificationListener();
   }, []);
 
   return (
